@@ -1,0 +1,8 @@
+data/
+elpa/
+undo/
+auto-save-list/
+history
+projectile-bookmarks.eld
+recentf
+transient/
