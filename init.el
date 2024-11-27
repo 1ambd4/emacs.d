@@ -171,6 +171,21 @@
   (setq company-selection-wrap-around t)
   (setq company-transformers '(company-sort-by-occurrence)))
 
+;; Language Server Protocol Support for Emacs.
+(use-package lsp-mode
+  :ensure t
+  :init
+  (setq lsp-keymap-prefix "C-c l"
+	lsp-file-watch-threshold 500)
+  :hook
+  (lsp-mode . lsp-enable-which-key-integration)
+  :commands (lsp lsp-deferred)
+  :config
+  (setq lsp-completion-provider :none)
+  (setq lsp-headerline-breadcrumb-enable t)
+  :bind
+  ("C-c l s" . lsp-ivy-workspace-symbol))
+
 ;; On the fly syntax checking for GNU Emacs.
 (use-package flycheck
   :ensure t
@@ -195,6 +210,26 @@
   :ensure t
   :after (projectile)
   :init (counsel-projectile-mode))
+
+;; Tree layout file explorer for Emacs.
+(use-package treemacs
+  :ensure t
+  :defer t
+  :config
+  (treemacs-tag-follow-mode)
+  :bind
+  (:map global-map
+	("M-0" . treemacs-select-window)
+	("C-x t 1" . treemacs-delete-other-windows)
+	("C-x t t" . treemacs)))
+
+(use-package treemacs-projectile
+  :ensure t
+  :after (treemacs projectile))
+
+(use-package lsp-treemacs
+  :ensure t
+  :after (treemacs lsp))
 
 (provide 'init)
 ;;; init.el ends here
