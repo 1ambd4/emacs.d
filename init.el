@@ -171,6 +171,15 @@
   (setq company-selection-wrap-around t)
   (setq company-transformers '(company-sort-by-occurrence)))
 
+;; Major mode for C++.
+(use-package c++-mode
+  :functions
+  c-toggle-hungry-state
+  :hook
+  (c-mode . lsp-deferred)
+  (c++-mode . lsp-deferred)
+  (c++-mode . c-toggle-hungry-state))
+
 ;; Language Server Protocol Support for Emacs.
 (use-package lsp-mode
   :ensure t
@@ -181,8 +190,19 @@
   (lsp-mode . lsp-enable-which-key-integration)
   :commands (lsp lsp-deferred)
   :config
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++mode-hook 'lsp)
+  (setq lsp-clients-clangd-args '("--all-scopes-completion"
+				  "--header-insertion=iwyu"
+				  "--completion-style=detailed"
+				  "--clang-tidy"
+				  "--log=verbose"))
   (setq lsp-completion-provider :none)
   (setq lsp-headerline-breadcrumb-enable t)
+  (setq lsp-lens-enable t)
+  (setq lsp-idle-delay 0.5)
+  (setq lsp-enable-symbol-highlighting t)
+  (setq lsp-inlay-hint-enable t)
   :bind
   ("C-c l s" . lsp-ivy-workspace-symbol))
 

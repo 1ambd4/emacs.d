@@ -1,8 +1,11 @@
+.lsp-session-*
+.cache/
 data/
 elpa/
 undo/
 auto-save-list/
 history
+projects
 projectile-bookmarks.eld
 recentf
 transient/
