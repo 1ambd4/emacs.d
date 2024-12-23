@@ -96,6 +96,12 @@
    :map minibuffer-local-map
    ("C-r" . counsel-minibuffer-history)))
 
+;; An Emacs frontend to The Silver Searcher.
+(use-package ag
+  :ensure t
+  :config
+  (setq ag-highlight-search t))
+
 ;; Amx is an alternative interface for M-x in Emacs.
 (use-package amx
   :ensure t
