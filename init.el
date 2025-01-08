@@ -155,8 +155,8 @@
   :config
   (setq dashboard-banner-logo-title "Welcome to Emacs!")
   (setq dashboard-startup-banner 'official)
-  (setq dashboard-items '((recents .5)
-			  (bookmarks .5)
+  (setq dashboard-items '((recents . 5)
+			  (bookmarks . 5)
 			  (projects . 5)))
   (dashboard-setup-startup-hook))
 
